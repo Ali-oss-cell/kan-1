@@ -10,11 +10,10 @@ export function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative scroll-mt-24 overflow-hidden py-section-gap-mobile md:py-section-gap"
+      className="relative scroll-mt-28 py-section-gap-mobile md:scroll-mt-32 md:py-section-gap"
     >
-      <div className="pointer-events-none absolute left-0 top-1/2 h-64 w-64 -translate-y-1/2 brand-pattern-purple opacity-10" />
-      <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-        <div className="mx-auto mb-20 max-w-3xl text-center">
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
           <span className="section-eyebrow">HOW WE WORK</span>
           <h2 className="section-title mb-stack-md">Our Process</h2>
           <p className="font-body-lg leading-relaxed text-on-surface-variant">

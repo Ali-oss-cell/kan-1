@@ -11,11 +11,10 @@ export function Expertise() {
     <section
       ref={sectionRef}
       id="expertise"
-      className="relative scroll-mt-24 overflow-hidden bg-surface-container py-section-gap-mobile md:py-section-gap"
+      className="relative scroll-mt-28 bg-surface-container py-section-gap-mobile md:scroll-mt-32 md:py-section-gap"
     >
-      <div className="pointer-events-none absolute -right-20 top-0 h-full w-1/2 rotate-6 brand-pattern-purple opacity-10" />
-      <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-        <div className="mx-auto mb-20 max-w-3xl text-center">
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
           <span className="section-eyebrow">WHAT WE DO</span>
           <h2 className="section-title mb-stack-md">Our Expertise</h2>
           <p className="font-body-lg leading-relaxed text-on-surface-variant">
@@ -28,7 +27,7 @@ export function Expertise() {
           {expertiseCards.map((card) => (
             <div
               key={card.title}
-              className="card-elevated group relative flex min-h-[320px] flex-col border-l-4 border-l-transparent p-8 pt-16 hover:-translate-y-1 hover:border-l-brand-purple"
+              className="card-elevated group relative flex min-h-[320px] flex-col border-l-4 border-l-transparent p-8 pt-16 hover:-translate-y-1 hover:border-l-brand-purple focus-within:border-l-brand-purple"
             >
               <div className="absolute right-5 top-5 text-outline-variant transition-all duration-300 group-hover:scale-110 group-hover:text-brand-purple">
                 <MaterialIcon

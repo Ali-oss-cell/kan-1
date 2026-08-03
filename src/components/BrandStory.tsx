@@ -10,7 +10,7 @@ export function BrandStory() {
     <section
       ref={sectionRef}
       id="about"
-      className="scroll-mt-24 py-section-gap-mobile md:py-section-gap"
+      className="scroll-mt-28 py-section-gap-mobile md:scroll-mt-32 md:py-section-gap"
     >
       <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
         <div className="relative overflow-hidden rounded-3xl bg-primary p-10 shadow-2xl shadow-primary/20 ring-1 ring-on-primary/10 md:p-16">

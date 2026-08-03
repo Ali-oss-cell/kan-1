@@ -17,7 +17,7 @@ export default function App() {
         Skip to content
       </a>
       <Nav />
-      <main id="main-content" className="overflow-x-hidden">
+      <main id="main-content">
         <Hero />
         <BrandStory />
         <Portfolio />

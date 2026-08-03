@@ -3,9 +3,9 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { MaterialIcon } from "./MaterialIcon";
 
 const links = [
+  { href: "#about", id: "about", label: "About" },
   { href: "#work", id: "work", label: "Work" },
   { href: "#expertise", id: "expertise", label: "Expertise" },
-  { href: "#about", id: "about", label: "About" },
   { href: "#process", id: "process", label: "Process" },
   { href: "#contact", id: "contact", label: "Contact" },
 ] as const;
@@ -51,7 +51,7 @@ export function Nav() {
         }`}
       >
         <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:h-24 md:px-margin-desktop">
-          <a href="#" className="flex-shrink-0 transition-opacity hover:opacity-80">
+          <a href="#main-content" className="flex-shrink-0 transition-opacity hover:opacity-80">
             <img
               src="/brand/logo-dark.png"
               alt="KAN Agency"

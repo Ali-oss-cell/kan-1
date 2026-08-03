@@ -28,7 +28,7 @@ export function useScrollReveal(
         scrollTrigger: {
           trigger: el,
           start: options?.start ?? "top 85%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       });
     },

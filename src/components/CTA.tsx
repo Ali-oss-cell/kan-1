@@ -9,7 +9,7 @@ export function CTA() {
     <section
       ref={sectionRef}
       id="contact"
-      className="mx-auto max-w-container-max scroll-mt-24 px-margin-mobile py-section-gap-mobile md:px-margin-desktop md:py-section-gap"
+      className="mx-auto max-w-container-max scroll-mt-28 px-margin-mobile py-section-gap-mobile md:scroll-mt-32 md:px-margin-desktop md:py-section-gap"
     >
       <div className="relative overflow-hidden rounded-[40px] bg-brand-gradient p-10 shadow-2xl shadow-brand-purple/30 md:p-20">
         <div className="pointer-events-none absolute inset-0 brand-pattern opacity-15" />

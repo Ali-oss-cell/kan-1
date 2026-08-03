@@ -3,8 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    overflow-x: clip;
+    scroll-padding-top: 7rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
-    @apply bg-background font-body-md text-on-surface antialiased;
+    @apply overflow-x-clip bg-background font-body-md text-on-surface antialiased;
   }
 
   .material-symbols-outlined {
@@ -35,7 +46,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-outline-variant bg-transparent px-10 py-4 font-label-caps text-label-caps transition-all duration-300 hover:border-brand-purple hover:bg-surface-container;
+    @apply inline-flex items-center justify-center rounded-full border border-outline-variant bg-transparent px-10 py-4 font-label-caps text-label-caps transition-all duration-300 hover:border-brand-purple hover:bg-surface-container active:scale-[0.98];
   }
 
   .card-elevated {
@@ -92,14 +103,4 @@
 
 ::selection {
   @apply bg-brand-purple text-on-primary;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
 }
