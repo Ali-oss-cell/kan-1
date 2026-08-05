@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+
 export function Footer() {
   const navLinks = [
-    { href: "#work", label: "Portfolio" },
-    { href: "#expertise", label: "Expertise" },
-    { href: "#about", label: "About" },
-    { href: "#process", label: "Process" },
+    { href: "/about", label: "About" },
+    { href: "/#work", label: "Work" },
+    { href: "/services", label: "Services" },
+    { href: "/#process", label: "Process" },
+    { href: "/contact", label: "Contact" },
   ] as const;
 
   const socialLinks = [
@@ -16,11 +19,13 @@ export function Footer() {
     <footer className="w-full border-t border-on-primary/10 bg-primary py-section-gap-mobile text-on-primary md:py-20">
       <div className="mx-auto grid max-w-container-max grid-cols-1 gap-12 px-margin-mobile md:grid-cols-4 md:gap-gutter md:px-margin-desktop">
         <div className="space-y-stack-md md:col-span-1">
-          <img
-            src="/brand/logo-light.png"
-            alt="KAN Agency"
-            className="h-10 w-auto"
-          />
+          <Link to="/">
+            <img
+              src="/brand/logo-light.png"
+              alt="KAN Agency"
+              className="h-10 w-auto"
+            />
+          </Link>
           <p className="max-w-xs font-body-md leading-relaxed text-on-primary/60">
             Your vision, our design — together, we can. Architects of brand
             success in the digital age.
@@ -32,13 +37,13 @@ export function Footer() {
             Navigation
           </h4>
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              to={link.href}
               className="font-body-md text-on-primary/60 transition-all duration-300 hover:translate-x-1 hover:text-on-primary"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 

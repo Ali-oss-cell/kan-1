@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function CTA() {
@@ -24,12 +25,12 @@ export function CTA() {
             Start your journey toward a stronger digital presence with a team
             that values your vision as much as you do.
           </p>
-          <a
-            href="mailto:hello@kanagency.design"
+          <Link
+            to="/contact"
             className="btn-primary !bg-on-primary !text-primary hover:!bg-on-primary hover:!shadow-xl hover:!shadow-primary/20"
           >
             Get in touch now
-          </a>
+          </Link>
         </div>
       </div>
     </section>

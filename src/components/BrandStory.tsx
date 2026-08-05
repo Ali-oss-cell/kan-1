@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { brandStory } from "@/content";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -44,6 +45,12 @@ export function BrandStory() {
                   </li>
                 ))}
               </ul>
+              <Link
+                to="/about"
+                className="inline-flex font-label-caps text-label-caps tracking-widest text-brand-lavender transition-colors hover:text-on-primary"
+              >
+                More about us →
+              </Link>
             </div>
           </div>
         </div>

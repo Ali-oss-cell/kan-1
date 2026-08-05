@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const SECTION_IDS = ["about", "work", "expertise", "process", "contact"] as const;
 
 export function useActiveSection() {
   const [activeId, setActiveId] = useState<string>("");
+  const { pathname } = useLocation();
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setActiveId("");
+      return;
+    }
+
     const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
       Boolean,
     ) as HTMLElement[];
@@ -26,7 +33,7 @@ export function useActiveSection() {
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return activeId;
 }

@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { prefersReducedMotion, registerGsap } from "@/lib/gsap";
 
 export function Hero() {
@@ -66,9 +67,9 @@ export function Hero() {
           data-hero-item
           className="flex flex-wrap justify-center gap-4 pt-stack-md md:pt-stack-lg"
         >
-          <a href="#contact" className="btn-primary">
+          <Link to="/contact" className="btn-primary">
             Elevate Your Brand
-          </a>
+          </Link>
           <a href="#work" className="btn-secondary">
             View Our Work
           </a>

@@ -1,5 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import { useCallback, useRef } from "react";
+import { Link } from "react-router-dom";
 import { portfolioProjects } from "@/content";
 import { registerGsap } from "@/lib/gsap";
 
@@ -223,9 +224,9 @@ export function Portfolio() {
                     >
                       {project.description}
                     </p>
-                    <a href="#contact" className="btn-secondary !px-8 !py-3">
+                    <Link to="/contact" className="btn-secondary !px-8 !py-3">
                       Start a Project
-                    </a>
+                    </Link>
                   </div>
                 </article>
               );

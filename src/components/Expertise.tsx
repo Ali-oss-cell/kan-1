@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { expertiseCards } from "@/content";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { MaterialIcon } from "./MaterialIcon";
@@ -48,6 +49,12 @@ export function Expertise() {
               <div className="h-0.5 w-12 rounded-full bg-brand-gradient transition-all duration-500 group-hover:w-full" />
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center md:mt-16">
+          <Link to="/services" className="btn-secondary">
+            Explore All Services
+          </Link>
         </div>
       </div>
     </section>

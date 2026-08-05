@@ -1,11 +1,28 @@
-import { BrandStory } from "@/components/BrandStory";
-import { CTA } from "@/components/CTA";
-import { Expertise } from "@/components/Expertise";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
 import { Nav } from "@/components/Nav";
-import { Portfolio } from "@/components/Portfolio";
-import { Process } from "@/components/Process";
+import { AboutPage } from "@/pages/AboutPage";
+import { ContactPage } from "@/pages/ContactPage";
+import { HomePage } from "@/pages/HomePage";
+import { ServicesPage } from "@/pages/ServicesPage";
+
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace("#", "");
+      const timer = window.setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 50);
+      return () => window.clearTimeout(timer);
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+}
 
 export default function App() {
   return (
@@ -16,15 +33,14 @@ export default function App() {
       >
         Skip to content
       </a>
+      <ScrollManager />
       <Nav />
-      <main id="main-content">
-        <Hero />
-        <BrandStory />
-        <Portfolio />
-        <Expertise />
-        <Process />
-        <CTA />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
       <Footer />
     </>
   );
