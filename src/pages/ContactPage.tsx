@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   contactForm,
   contactMethods,
@@ -6,10 +6,14 @@ import {
 } from "@/content/contact";
 import { MaterialIcon } from "@/components/MaterialIcon";
 
+type ContactSubject = (typeof contactForm.subjects)[number];
+
 export function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState(contactForm.subjects[0]);
+  const [subject, setSubject] = useState<ContactSubject>(
+    contactForm.subjects[0],
+  );
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -130,7 +134,9 @@ export function ContactPage() {
                 <select
                   name="subject"
                   value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
+                  onChange={(e) =>
+                    setSubject(e.target.value as ContactSubject)
+                  }
                   className="w-full rounded-2xl border border-outline-variant/40 bg-surface-container/40 px-4 py-3 font-body-md text-primary outline-none transition-colors focus:border-brand-purple"
                 >
                   {contactForm.subjects.map((option) => (
