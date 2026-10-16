@@ -1,6 +1,14 @@
 import { useRef } from "react";
 import { processSteps } from "@/content";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { SectionHeader } from "./SectionHeader";
+
+const hoverTone = [
+  "hover:bg-lavender",
+  "hover:bg-purple",
+  "hover:bg-periwinkle",
+  "hover:bg-ink hover:text-paper",
+] as const;
 
 export function Process() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,41 +18,49 @@ export function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative scroll-mt-28 py-section-gap-mobile md:scroll-mt-32 md:py-section-gap"
+      className="section scroll-mt-32 border-b-3 border-ink"
     >
-      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-        <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
-          <span className="section-eyebrow">HOW WE WORK</span>
-          <h2 className="section-title mb-stack-md">Our Process</h2>
-          <p className="font-body-lg leading-relaxed text-on-surface-variant">
-            From discovery to deployment — a clinical process where every pixel
-            has purpose and every strategy drives growth.
+      <div className="container-site">
+        <SectionHeader
+          index="03"
+          label="How we work"
+          title={
+            <>
+              Four steps.
+              <br />
+              <span className="mark-block mt-1 border-3 border-ink bg-purple pb-[0.03em] shadow-brutal-sm">No black box.</span>
+            </>
+          }
+        >
+          <p className="max-w-[360px] text-body-lg text-ink/80">
+            From discovery to deployment — a clear process where every sprint
+            has an owner, an output and a date.
           </p>
-        </div>
+        </SectionHeader>
 
-        <div className="relative grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-gutter">
-          <div
-            className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-10 hidden h-px bg-gradient-to-r from-brand-purple/20 via-brand-purple to-brand-blue/20 md:block"
-            aria-hidden
-          />
-
-          {processSteps.map((item) => (
-            <div
+        <ol
+          data-reveal
+          className="grid grid-cols-1 border-l-3 border-t-3 border-ink bg-paper shadow-brutal-lg md:grid-cols-2 xl:grid-cols-4"
+        >
+          {processSteps.map((item, i) => (
+            <li
               key={item.step}
-              className="card-elevated group relative flex flex-col items-start p-8 hover:-translate-y-1"
+              className={`group flex min-h-[420px] flex-col border-b-3 border-r-3 border-ink p-8 transition-colors duration-200 ${hoverTone[i]}`}
             >
-              <div className="relative z-10 mb-stack-md flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gradient font-label-caps text-label-caps text-on-primary shadow-lg shadow-brand-purple/30 transition-transform duration-300 group-hover:scale-105">
+              <span className="display mb-10 text-[128px] leading-[104px] text-outline transition-[color] duration-200 group-hover:text-current">
                 {item.step}
+              </span>
+              <h3 className="display mb-4 text-display-sm">{item.title}</h3>
+              <p className="mb-8 text-body">{item.description}</p>
+              <div className="mt-auto flex items-center gap-3 border-t-3 border-ink pt-4">
+                <span className="label-lg">Output</span>
+                <span className="label text-[11px] font-bold">
+                  → {item.output}
+                </span>
               </div>
-              <h3 className="mb-stack-sm font-headline-md text-headline-md">
-                {item.title}
-              </h3>
-              <p className="font-body-md leading-relaxed text-on-surface-variant">
-                {item.description}
-              </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

@@ -29,7 +29,7 @@ export default function App() {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-6 focus:py-3 focus:font-label-caps focus:text-label-caps focus:text-on-primary"
+        className="label-lg sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:border-3 focus:border-ink focus:bg-lavender focus:px-6 focus:py-3 focus:text-ink focus:shadow-brutal-sm"
       >
         Skip to content
       </a>

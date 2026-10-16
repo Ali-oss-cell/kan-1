@@ -1,7 +1,8 @@
 export const contactPageIntro = {
-  title: "Contact Us.",
+  eyebrow: "Contact",
+  title: "Let's build it.",
   subtitle:
-    "Tell us about your vision. We respond within two business days — usually sooner.",
+    "Tell us about your product, brand or campaign. We respond within two business days — usually sooner.",
 } as const;
 
 export const contactMethods = [
@@ -31,6 +32,7 @@ export const contactForm = {
     "Launch Site",
     "Web/App Build",
     "Brand + Launch Bundle",
+    "Growth Marketing",
     "AI Automation Pilot",
     "General inquiry",
   ],

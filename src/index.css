@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   KAN — Neo-brutalist design system
+   Grid: 8px base · Border: 3px ink · Radius: 0 · Shadow: hard offset, no blur
+   ========================================================================== */
+
 @layer base {
   html {
     overflow-x: clip;
-    scroll-padding-top: 7rem;
+    scroll-padding-top: 8rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -15,92 +20,347 @@
   }
 
   body {
-    @apply overflow-x-clip bg-background font-body-md text-on-surface antialiased;
+    @apply overflow-x-clip bg-paper font-sans text-body text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
 
-  .material-symbols-outlined {
-    font-variation-settings:
-      "FILL" 0,
-      "wght" 400,
-      "GRAD" 0,
-      "opsz" 24;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  img {
+    @apply block max-w-full;
   }
 
   a:focus-visible,
-  button:focus-visible {
-    @apply outline-none ring-2 ring-brand-purple ring-offset-2 ring-offset-background;
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid #0f0f0f;
+    outline-offset: 3px;
+  }
+
+  .on-dark a:focus-visible,
+  .on-dark button:focus-visible {
+    outline-color: #c4a4ff;
+  }
+
+  ::selection {
+    @apply bg-lavender text-ink;
+  }
+
+  .icon {
+    @apply inline-block shrink-0 select-none align-middle text-[24px];
   }
 }
 
 @layer components {
-  .section-eyebrow {
-    @apply mb-stack-md inline-block font-label-caps text-label-caps tracking-widest text-brand-purple;
+  /* ---- Layout ---------------------------------------------------------- */
+  .container-site {
+    @apply mx-auto w-full max-w-site px-6 md:px-10;
   }
 
-  .section-title {
-    @apply font-headline-xl text-headline-xl uppercase tracking-tighter;
+  .section {
+    @apply relative py-section-sm md:py-section;
   }
 
-  .btn-primary {
-    @apply inline-flex transform items-center justify-center rounded-full bg-primary px-10 py-4 font-label-caps text-label-caps text-on-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-gradient hover:shadow-lg hover:shadow-brand-purple/25 active:scale-[0.98];
+  /* ---- Typography ------------------------------------------------------ */
+  .display {
+    @apply font-display font-extrabold uppercase;
+    font-stretch: 62%;
+    font-variation-settings: "wdth" 62;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-outline-variant bg-transparent px-10 py-4 font-label-caps text-label-caps transition-all duration-300 hover:border-brand-purple hover:bg-surface-container active:scale-[0.98];
+  .display-wide {
+    @apply font-display font-black uppercase;
+    font-stretch: 100%;
+    font-variation-settings: "wdth" 100;
   }
 
-  .card-elevated {
-    @apply rounded-2xl border border-outline-variant/40 bg-surface shadow-sm transition-all duration-500 hover:border-brand-purple/40 hover:shadow-xl hover:shadow-brand-purple/10;
+  .label {
+    @apply font-mono text-label font-medium uppercase;
   }
 
-  .link-underline {
-    @apply relative transition-colors duration-300 hover:text-primary;
+  .label-lg {
+    @apply font-mono text-[13px] font-bold uppercase leading-4 tracking-[0.08em];
   }
 
-  .link-underline::after {
-    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-brand-gradient transition-all duration-300 content-[''];
+  /* ---- Buttons --------------------------------------------------------- */
+  .btn {
+    @apply relative inline-flex h-14 select-none items-center justify-center gap-3 whitespace-nowrap border-3 border-ink px-8 font-mono text-[13px] font-bold uppercase leading-4 tracking-[0.08em] text-ink shadow-brutal transition-[transform,box-shadow,background-color] duration-150 ease-out;
   }
 
-  .link-underline:hover::after,
-  .link-underline[data-active='true']::after {
-    @apply w-full;
+  .btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 11px 11px 0 0 #0f0f0f;
+  }
+
+  .btn:active {
+    transform: translate(8px, 8px);
+    box-shadow: 0 0 0 0 #0f0f0f;
+  }
+
+  .btn-sm {
+    @apply h-12 px-6 shadow-brutal-sm;
+  }
+
+  .btn-sm:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 #0f0f0f;
+  }
+
+  .btn-sm:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 #0f0f0f;
+  }
+
+  .btn-periwinkle {
+    @apply bg-periwinkle text-ink;
+  }
+
+  .btn-purple {
+    @apply bg-purple text-ink;
+  }
+
+  .btn-paper {
+    @apply bg-paper text-ink;
+  }
+
+  .btn-ink {
+    @apply bg-ink text-paper;
+  }
+
+  .btn-lavender {
+    @apply bg-lavender text-ink;
+  }
+
+  /* Buttons that sit on dark surfaces: shadow flips to paper */
+  .on-dark .btn {
+    @apply border-paper shadow-brutal-paper;
+  }
+
+  .on-dark .btn:hover {
+    box-shadow: 11px 11px 0 0 #f0f0f0;
+  }
+
+  .on-dark .btn:active {
+    box-shadow: 0 0 0 0 #f0f0f0;
+  }
+
+  /* Light cards nested inside dark sections restore ink borders/shadows */
+  .on-dark .on-light .btn,
+  .on-light .btn {
+    @apply border-ink shadow-brutal;
+  }
+
+  .on-dark .on-light .btn-sm,
+  .on-light .btn-sm {
+    @apply shadow-brutal-sm;
+  }
+
+  .on-dark .on-light .btn:hover {
+    box-shadow: 11px 11px 0 0 #0f0f0f;
+  }
+
+  .on-dark .on-light .btn-sm:hover {
+    box-shadow: 6px 6px 0 0 #0f0f0f;
+  }
+
+  .on-dark .on-light .btn:active,
+  .on-dark .on-light .btn-sm:active {
+    box-shadow: 0 0 0 0 #0f0f0f;
+  }
+
+  .on-light a:focus-visible,
+  .on-light button:focus-visible {
+    outline-color: #0f0f0f;
+  }
+
+  .btn .icon {
+    font-size: 20px;
+    transition: transform 150ms ease-out;
+  }
+
+  .btn:hover .icon {
+    transform: translate(2px, -2px);
+  }
+
+  /* ---- Chips / tags ---------------------------------------------------- */
+  .chip {
+    @apply inline-flex h-8 items-center gap-2 border-3 border-ink bg-paper px-3 font-mono text-label font-bold uppercase;
+  }
+
+  .tag {
+    @apply inline-flex h-7 items-center border-2 border-ink bg-paper px-2 font-mono text-[11px] font-medium uppercase leading-4 tracking-[0.06em];
+  }
+
+  /* ---- Surfaces -------------------------------------------------------- */
+  .card {
+    @apply border-3 border-ink bg-paper shadow-brutal transition-[transform,box-shadow] duration-200 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 0 #0f0f0f;
+  }
+
+  /* ---- Form fields ----------------------------------------------------- */
+  .field {
+    @apply w-full border-3 border-ink bg-paper px-4 py-3.5 font-sans text-body text-ink placeholder:text-ink/40;
+    transition:
+      box-shadow 150ms ease-out,
+      transform 150ms ease-out;
+  }
+
+  .field:focus {
+    outline: none;
+    background-color: #c4a4ff;
+    box-shadow: 6px 6px 0 0 #0f0f0f;
+    transform: translate(-3px, -3px);
   }
 }
 
-.brand-pattern {
-  background-image: url("/brand/pattern-dark.png");
-  background-size: 200px 200px;
-  background-repeat: repeat;
+@layer utilities {
+  /* ---- Texture & pattern utilities ------------------------------------- */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(15, 15, 15, 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 15, 15, 0.09) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgba(240, 240, 240, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(240, 240, 240, 0.12) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(
+      circle at center,
+      rgba(15, 15, 15, 0.28) 1.5px,
+      transparent 2px
+    );
+    background-size: 16px 16px;
+  }
+
+  .bg-dots-light {
+    background-image: radial-gradient(
+      circle at center,
+      rgba(240, 240, 240, 0.28) 1.5px,
+      transparent 2px
+    );
+    background-size: 16px 16px;
+  }
+
+  .bg-hazard {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #0f0f0f 0,
+      #0f0f0f 12px,
+      #c4a4ff 12px,
+      #c4a4ff 24px
+    );
+  }
+
+  .bg-hazard-ink {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #0f0f0f 0,
+      #0f0f0f 8px,
+      transparent 8px,
+      transparent 16px
+    );
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 3px #0f0f0f;
+    color: transparent;
+  }
+
+  .text-outline-paper {
+    -webkit-text-stroke: 2px #f0f0f0;
+    color: transparent;
+  }
+
+  .text-outline-periwinkle {
+    -webkit-text-stroke: 3px #92a4ff;
+    color: transparent;
+  }
+
+  /* Highlighter block behind a word */
+  .mark-block {
+    @apply relative inline-block px-[0.12em];
+  }
+
+  /* ---- Duotone image treatment ---------------------------------------- */
+  .duotone {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--duo, #b890f4);
+  }
+
+  .duotone > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.4) brightness(1.08);
+    mix-blend-mode: multiply;
+    transition:
+      filter 400ms ease-out,
+      transform 600ms ease-out;
+  }
+
+  .duotone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      circle at center,
+      rgba(15, 15, 15, 0.38) 1px,
+      transparent 1.6px
+    );
+    background-size: 5px 5px;
+    mix-blend-mode: multiply;
+    transition: opacity 400ms ease-out;
+  }
+
+  .group:hover .duotone > img,
+  .duotone:hover > img {
+    filter: grayscale(0) contrast(1.05) brightness(1);
+    mix-blend-mode: normal;
+    transform: scale(1.04);
+  }
+
+  .group:hover .duotone::after,
+  .duotone:hover::after {
+    opacity: 0;
+  }
+
+  .duo-purple {
+    --duo: #b890f4;
+  }
+  .duo-periwinkle {
+    --duo: #92a4ff;
+  }
+  .duo-lavender {
+    --duo: #c4a4ff;
+  }
 }
 
-.hero-pattern-fade {
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.15) 12%,
-    rgba(0, 0, 0, 0.6) 35%,
-    black 55%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.15) 12%,
-    rgba(0, 0, 0, 0.6) 35%,
-    black 55%
-  );
-}
-
-.brand-pattern-purple {
-  background-image: url("/brand/pattern-purple.png");
-  background-size: 200px 200px;
-  background-repeat: repeat;
-}
-
-.text-stroke {
-  -webkit-text-stroke: 1px #b890f4;
-  -webkit-text-fill-color: transparent;
-}
-
-::selection {
-  @apply bg-brand-purple text-on-primary;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

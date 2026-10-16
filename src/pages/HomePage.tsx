@@ -9,10 +9,10 @@ export function HomePage() {
   return (
     <main id="main-content">
       <Hero />
-      <BrandStory />
-      <Portfolio />
       <Expertise />
+      <Portfolio />
       <Process />
+      <BrandStory />
       <CTA />
     </main>
   );
