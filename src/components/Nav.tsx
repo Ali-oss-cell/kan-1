@@ -59,13 +59,7 @@ export function Nav() {
       {/* Announcement strip */}
       <div className="on-dark border-b-3 border-ink bg-ink text-paper">
         <div className="container-site flex h-10 items-center justify-between gap-4">
-          <p className="label flex items-center gap-3">
-            <span
-              className="inline-block h-2 w-2 bg-lavender animate-blink"
-              aria-hidden
-            />
-            Now booking new projects
-          </p>
+          <p className="label">Now booking new projects</p>
           <a
             href="mailto:hello@kanagency.design"
             className="label hidden text-paper/70 transition-colors hover:text-lavender sm:inline"
