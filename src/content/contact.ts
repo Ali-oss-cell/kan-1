@@ -5,12 +5,14 @@ export const contactPageIntro = {
     "Tell us about your product, brand or campaign. We respond within two business days — usually sooner.",
 } as const;
 
+export const contactEmail = "info@kan.com";
+
 export const contactMethods = [
   {
     icon: "mail",
     label: "Email",
-    value: "hello@kanagency.design",
-    href: "mailto:hello@kanagency.design",
+    value: contactEmail,
+    href: `mailto:${contactEmail}`,
   },
   {
     icon: "schedule",

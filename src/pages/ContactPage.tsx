@@ -2,6 +2,7 @@ import { type FormEvent, useEffect, useState } from "react";
 import { MaterialIcon } from "@/components/MaterialIcon";
 import { PageHeader } from "@/components/PageHeader";
 import {
+  contactEmail,
   contactForm,
   contactMethods,
   contactPageIntro,
@@ -14,6 +15,10 @@ export function ContactPage() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState<string>(contactForm.subjects[0]);
   const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const apiUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
 
   useEffect(() => {
     document.title = "Contact | KAN";
@@ -22,11 +27,32 @@ export function ContactPage() {
     };
   }, []);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
-    const href = `mailto:hello@kanagency.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
+    if (!apiUrl) {
+      const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
+      const href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = href;
+      return;
+    }
+    setSending(true);
+    setFormError(null);
+    try {
+      const response = await fetch(`${apiUrl}/api/inquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name, email, offer: subject, message }),
+      });
+      if (!response.ok) {
+        setFormError(`We could not send that. Email ${contactEmail}.`);
+        return;
+      }
+      setSent(true);
+    } catch {
+      setFormError(`We could not send that. Email ${contactEmail}.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -182,11 +208,19 @@ export function ContactPage() {
               </div>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <button type="submit" className="btn btn-periwinkle">
-                  Send message
+                <button type="submit" className="btn btn-periwinkle" disabled={sending || sent}>
+                  {sent ? "Message sent" : "Send message"}
                   <MaterialIcon name="arrow_outward" aria-hidden />
                 </button>
-                <p className="label text-ink/60">Opens your email app</p>
+                <p className="label text-ink/60">
+                  {sent
+                    ? "We'll reply within two business days."
+                    : formError
+                      ? formError
+                      : apiUrl
+                        ? "We'll reply by email."
+                        : "Opens your email app"}
+                </p>
               </div>
             </div>
           </form>
