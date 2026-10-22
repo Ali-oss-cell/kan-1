@@ -2,6 +2,7 @@ import { useState, type ChangeEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { formatDate, formatMoney, founderName, labelOf, todayISO } from "@/dashboard/logic";
 import { useDashboard } from "@/dashboard/store";
+import { FileLink } from "@/dashboard/FileLink";
 import { APPROVALS, MILESTONE_STATUSES, PROJECT_STATUSES } from "@/dashboard/types";
 import { Empty, Field, FormError, PageHeading, Status } from "@/dashboard/ui";
 
@@ -123,9 +124,7 @@ export function PortalProjects() {
                   <ul>
                     {files.map((file) => (
                       <li key={file.id} className="border-b-3 border-ink bg-paper px-4 py-3 last:border-b-0">
-                        <a href={file.dataUrl} download={file.name} className="font-bold underline">
-                          {file.name}
-                        </a>
+                        <FileLink name={file.name} dataUrl={file.dataUrl} downloadUrl={file.downloadUrl} />
                         {file.note ? <p className="mt-1 text-small">{file.note}</p> : null}
                       </li>
                     ))}
@@ -154,7 +153,7 @@ export function PortalProjects() {
 function ClientFileForm({
   onSave,
 }: {
-  onSave: (file: { id: string; name: string; note: string; dataUrl: string; addedAt: string }) => string | null;
+  onSave: (file: { id: string; name: string; note: string; dataUrl: string; addedAt: string }) => Promise<string | null>;
 }) {
   const [note, setNote] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -173,7 +172,7 @@ function ClientFileForm({
       reader.onerror = () => reject(new Error("read"));
       reader.readAsDataURL(file);
     });
-    const problem = onSave({
+    const problem = await onSave({
       id: crypto.randomUUID(),
       name: file.name,
       note: note.trim() || "Sent from the portal",

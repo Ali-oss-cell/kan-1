@@ -5,7 +5,7 @@ import { useDashboard } from "@/dashboard/store";
 import { Field, FormError } from "@/dashboard/ui";
 
 export function PortalSignIn() {
-  const { db, portalClient, portalSignIn, loadSample } = useDashboard();
+  const { db, portalClient, portalSignIn, loadSample, usingApi } = useDashboard();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +32,7 @@ export function PortalSignIn() {
         <p className="mb-8 text-body text-ink/70">
           Your projects, updates, and invoices. This door is not linked from the public site.
         </p>
-        {hasDemoData(db) ? (
+        {usingApi ? null : hasDemoData(db) ? (
           <p className="mb-8 border-3 border-ink bg-lavender px-4 py-3 text-small">
             Sample data is in this browser. Email <span className="font-bold">{DEMO_PORTAL_EMAIL}</span>, password{" "}
             <span className="font-bold">{DEMO_PORTAL_PASSWORD}</span>.

@@ -5,13 +5,13 @@ import { useDashboard } from "@/dashboard/store";
 import { Field, FormError } from "@/dashboard/ui";
 
 export function SignIn() {
-  const { db, founder, signIn, createFirstFounder, loadSample } = useDashboard();
+  const { db, founder, signIn, createFirstFounder, loadSample, usingApi } = useDashboard();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
-  const setup = db.founders.length === 0;
+  const setup = !usingApi && db.founders.length === 0;
 
   useEffect(() => {
     document.title = "Founders | KAN";
@@ -42,7 +42,7 @@ export function SignIn() {
             ? "Create the first founder login. It stays on this computer until you download a backup."
             : "Founders only. This door is not linked from the public site."}
         </p>
-        {hasDemoData(db) ? (
+        {usingApi ? null : hasDemoData(db) ? (
           <p className="mb-8 border-3 border-ink bg-lavender px-4 py-3 text-small">
             Sample data is in this browser. Name <span className="font-bold">{DEMO_FOUNDER_NAME}</span>, password{" "}
             <span className="font-bold">{DEMO_FOUNDER_PASSWORD}</span>.

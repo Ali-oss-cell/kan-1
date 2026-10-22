@@ -234,6 +234,7 @@ export type StoredFile = {
   name: string;
   note: string;
   dataUrl: string;
+  downloadUrl?: string;
   addedAt: string;
   shared: boolean;
   fromClient: boolean;

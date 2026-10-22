@@ -33,6 +33,8 @@ import {
 } from "@/dashboard/types";
 import { demoDb } from "@/dashboard/demo";
 import { offerFrom, todayISO } from "@/dashboard/logic";
+import { apiBase } from "@/dashboard/remote";
+import { RemoteDashboard } from "@/dashboard/remoteStore";
 
 const DATA_KEY = "kan.dashboard.v1";
 const SESSION_KEY = "kan.dashboard.session";
@@ -47,7 +49,7 @@ type DashboardContextValue = {
   createFirstFounder: (name: string, password: string) => Promise<string | null>;
   addFounder: (name: string, password: string) => Promise<string | null>;
   saveClient: (client: Client) => void;
-  deleteClient: (id: string) => string | null;
+  deleteClient: (id: string) => Promise<string | null>;
   saveProject: (project: Project) => void;
   deleteProject: (id: string) => void;
   saveMilestone: (milestone: Milestone) => void;
@@ -61,7 +63,7 @@ type DashboardContextValue = {
   winInquiry: (id: string, withProject: boolean) => void;
   saveNote: (note: Note) => void;
   deleteNote: (id: string) => void;
-  saveFile: (file: StoredFile) => string | null;
+  saveFile: (file: StoredFile) => Promise<string | null>;
   deleteFile: (id: string) => void;
   setPortalAccess: (clientId: string, enabled: boolean, password: string) => Promise<string | null>;
   saveUpdate: (update: Update) => void;
@@ -75,7 +77,7 @@ type DashboardContextValue = {
   saveReply: (reply: Reply) => void;
   setMilestoneApproval: (id: string, approval: Milestone["approval"], actorName: string) => void;
   saveQuote: (quote: Quote) => void;
-  acceptQuote: (id: string) => string | null;
+  acceptQuote: (id: string) => Promise<string | null>;
   saveEmployee: (employee: Employee) => void;
   deleteEmployee: (id: string) => void;
   setCrewAccess: (employeeId: string, enabled: boolean, password: string) => Promise<string | null>;
@@ -85,13 +87,14 @@ type DashboardContextValue = {
   deleteTask: (id: string) => void;
   saveTime: (entry: TimeEntry) => void;
   deleteTime: (id: string) => void;
-  issueNextInvoice: (id: string) => string | null;
+  issueNextInvoice: (id: string) => Promise<string | null>;
+  usingApi: boolean;
   crew: Employee | null;
   crewSignIn: (email: string, password: string) => Promise<string | null>;
   crewSignOut: () => void;
 };
 
-const DashboardContext = createContext<DashboardContextValue | null>(null);
+export const DashboardContext = createContext<DashboardContextValue | null>(null);
 
 function isDb(value: unknown): value is DB {
   if (!value || typeof value !== "object") return false;
@@ -203,6 +206,11 @@ function checkPassword(name: string, password: string) {
 }
 
 export function DashboardProvider({ children }: { children: ReactNode }) {
+  if (apiBase) return <RemoteDashboard>{children}</RemoteDashboard>;
+  return <LocalDashboard>{children}</LocalDashboard>;
+}
+
+function LocalDashboard({ children }: { children: ReactNode }) {
   const [db, setDb] = useState<DB>(loadDb);
   const [founderId, setFounderId] = useState<string | null>(() => localStorage.getItem(SESSION_KEY));
   const [portalClientId, setPortalClientId] = useState<string | null>(() => localStorage.getItem(PORTAL_KEY));
@@ -280,6 +288,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
     founder,
     portalClient,
     crew,
+    usingApi: false,
     async signIn(name, password) {
       const match = dbRef.current.founders.find(
         (item) => item.name.toLowerCase() === name.trim().toLowerCase(),
@@ -303,7 +312,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
     saveClient(client) {
       commit((current) => ({ ...current, clients: upsert(current.clients, client) }));
     },
-    deleteClient(id) {
+    async deleteClient(id) {
       if (dbRef.current.projects.some((project) => project.clientId === id)) {
         return "This client still has projects. Delete those first.";
       }
@@ -432,7 +441,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         notes: current.notes.filter((note) => note.id !== id),
       }));
     },
-    saveFile(file) {
+    async saveFile(file) {
       if (file.dataUrl.length > 600_000) {
         return "That file is over 400 KB. Keep this copy smaller, or note where the file lives.";
       }
@@ -563,7 +572,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         ),
       );
     },
-    acceptQuote(id) {
+    async acceptQuote(id) {
       const quote = dbRef.current.quotes.find((item) => item.id === id);
       if (!quote) return "That quote is no longer here.";
       if (quote.projectId) return "This quote already opened a project.";
@@ -681,7 +690,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         timeEntries: current.timeEntries.filter((entry) => entry.id !== id),
       }));
     },
-    issueNextInvoice(id) {
+    async issueNextInvoice(id) {
       const source = dbRef.current.invoices.find((item) => item.id === id);
       if (!source) return "That invoice is no longer here.";
       if (source.repeat !== "monthly") return "Turn on monthly repeat first.";

@@ -4,7 +4,7 @@ import { useDashboard } from "@/dashboard/store";
 import { Field, FormError } from "@/dashboard/ui";
 
 export function CrewSignIn() {
-  const { db, crew, crewSignIn } = useDashboard();
+  const { db, crew, crewSignIn, usingApi } = useDashboard();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export function CrewSignIn() {
         <p className="label mb-3 text-ink/60">KAN crew</p>
         <h1 className="display mb-4 text-[48px] leading-none">Sign in</h1>
         <p className="mb-8 text-body text-ink/70">Your tasks, projects, time, and salary. This door is not linked from the public site.</p>
-        {demo ? (
+        {demo && !usingApi ? (
           <p className="mb-8 border-3 border-ink bg-paper px-4 py-3 text-small">
             Sample data is in this browser. Email <span className="font-bold">sam@example.com</span>, password{" "}
             <span className="font-bold">crew-pass</span>.

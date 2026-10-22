@@ -157,7 +157,9 @@ function QuoteBox({ inquiry }: { inquiry: Inquiry }) {
           <button
             type="button"
             className="btn btn-sm btn-paper mt-3"
-            onClick={() => setError(acceptQuote(quote.id))}
+            onClick={() => {
+              void acceptQuote(quote.id).then(setError);
+            }}
           >
             Accept and open project
           </button>

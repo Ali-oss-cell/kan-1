@@ -109,13 +109,14 @@ export function Clients() {
               }}
               onDelete={() => {
                 if (!window.confirm(`Delete ${selected.name}?`)) return;
-                const problem = deleteClient(selected.id);
-                if (problem) {
-                  setError(problem);
-                  return;
-                }
-                setSelectedId(null);
-                setError(null);
+                void deleteClient(selected.id).then((problem) => {
+                  if (problem) {
+                    setError(problem);
+                    return;
+                  }
+                  setSelectedId(null);
+                  setError(null);
+                });
               }}
             />
           ) : (

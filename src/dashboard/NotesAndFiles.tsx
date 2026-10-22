@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { formatDate, todayISO } from "@/dashboard/logic";
 import { useDashboard } from "@/dashboard/store";
 import type { OwnerType } from "@/dashboard/types";
+import { FileLink } from "@/dashboard/FileLink";
 import { Empty, Field, FormError } from "@/dashboard/ui";
 
 const MAX_BYTES = 400 * 1024;
@@ -117,7 +118,7 @@ function FileForm({
   ownerType,
   ownerId,
 }: {
-  files: { id: string; name: string; note: string; dataUrl: string; addedAt: string; shared: boolean; fromClient?: boolean }[];
+  files: { id: string; name: string; note: string; dataUrl: string; downloadUrl?: string; addedAt: string; shared: boolean; fromClient?: boolean }[];
   onSave: (file: {
     id: string;
     ownerType: OwnerType;
@@ -125,10 +126,11 @@ function FileForm({
     name: string;
     note: string;
     dataUrl: string;
+    downloadUrl?: string;
     addedAt: string;
     shared: boolean;
     fromClient: boolean;
-  }) => string | null;
+  }) => Promise<string | null>;
   onDelete: (id: string) => void;
   ownerType: OwnerType;
   ownerId: string;
@@ -145,7 +147,7 @@ function FileForm({
       return;
     }
     const dataUrl = await readFile(file);
-    const problem = onSave({
+    const problem = await onSave({
       id: crypto.randomUUID(),
       ownerType,
       ownerId,
@@ -190,9 +192,7 @@ function FileForm({
           {files.map((file) => (
             <li key={file.id} className="flex items-start justify-between gap-4 border-t-3 border-ink bg-paper px-4 py-3">
               <div>
-                <a href={file.dataUrl} download={file.name} className="font-bold underline">
-                  {file.name}
-                </a>
+                <FileLink name={file.name} dataUrl={file.dataUrl} downloadUrl={file.downloadUrl} />
                 <p className="label mt-1 text-ink/60">{formatDate(file.addedAt)}</p>
                 {file.note ? <p className="mt-1 text-small">{file.note}</p> : null}
               </div>
