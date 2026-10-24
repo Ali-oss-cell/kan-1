@@ -4,6 +4,7 @@ import { CTA } from "@/components/CTA";
 import { MaterialIcon } from "@/components/MaterialIcon";
 import { PageHeader } from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { serviceStories } from "@/content/stories";
 import { launchServices, servicesPageIntro } from "@/content/services";
 
 type Service = (typeof launchServices)[number];
@@ -114,6 +115,17 @@ export function ServicesPage() {
         subtitle={servicesPageIntro.subtitle}
         tone="purple"
       />
+
+      <section className="border-b-3 border-ink">
+        <div className="container-site grid grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+          {serviceStories.map((story) => (
+            <Link key={story.path} to={story.path} className="card card-hover bg-paper p-6">
+              <span className="label">{story.eyebrow}</span>
+              <h2 className="display mt-3 text-[32px] leading-9">{story.title}</h2>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section ref={gridRef} className="section border-b-3 border-ink">
         <div className="container-site grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">

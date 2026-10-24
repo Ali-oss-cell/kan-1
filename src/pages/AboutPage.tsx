@@ -9,6 +9,7 @@ import {
   aboutClients,
   aboutPageIntro,
   aboutStory,
+  aboutStudio,
   aboutValues,
 } from "@/content/about";
 
@@ -38,6 +39,13 @@ export function AboutPage() {
         subtitle={aboutPageIntro.subtitle}
         tone="periwinkle"
       />
+
+      <section className="border-b-3 border-ink bg-paper">
+        <div className="container-site max-w-3xl py-16 md:py-20">
+          <h2 className="display mb-6 text-display-sm">The studio</h2>
+          <p className="text-body-lg text-ink/80">{aboutStudio}</p>
+        </div>
+      </section>
 
       <BrandStory
         index="01"

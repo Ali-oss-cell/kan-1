@@ -5,6 +5,9 @@ export const aboutPageIntro = {
     "Three founders. One name. A software and marketing studio built to turn vision into products and brands that scale.",
 } as const;
 
+export const aboutStudio =
+  "KAN is a software, marketing, and brand studio led by its three founders, K, A, and N. The studio designs and builds web apps, brand systems, and marketing programs for companies that want one team on the work. Clients include teams in the United Arab Emirates and companies that collaborate remotely.";
+
 export const aboutStory = {
   eyebrow: "Our story",
   headline: "Three founders. One name. Infinite possibility.",

@@ -5,11 +5,17 @@ import { DashboardApp } from "@/dashboard/DashboardApp";
 import { PortalApp } from "@/portal/PortalApp";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { SeoSync } from "@/components/SeoSync";
+import { storyByPath } from "@/content/stories";
 import { AboutPage } from "@/pages/AboutPage";
+import { BlogIndexPage } from "@/pages/BlogIndexPage";
+import { CaseStudiesPage } from "@/pages/CaseStudiesPage";
 import { ContactPage } from "@/pages/ContactPage";
 import { HomePage } from "@/pages/HomePage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
+import { ProcessPage } from "@/pages/ProcessPage";
 import { ServicesPage } from "@/pages/ServicesPage";
+import { StoryPage } from "@/pages/StoryPage";
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -26,6 +32,13 @@ function ScrollManager() {
   }, [pathname, hash]);
 
   return null;
+}
+
+function StoryRoute() {
+  const { pathname } = useLocation();
+  const story = storyByPath(pathname);
+  if (!story) return <NotFoundPage />;
+  return <StoryPage story={story} />;
 }
 
 export default function App() {
@@ -51,11 +64,19 @@ export default function App() {
           >
             Skip to content
           </a>
+          <SeoSync />
           <Nav />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:slug" element={<StoryRoute />} />
+            <Route path="/for/:slug" element={<StoryRoute />} />
+            <Route path="/blog" element={<BlogIndexPage />} />
+            <Route path="/blog/:slug" element={<StoryRoute />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/process" element={<ProcessPage />} />
+            <Route path="/faq" element={<StoryRoute />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

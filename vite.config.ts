@@ -9,4 +9,10 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  ssr: {
+    resolve: {
+      conditions: ["module-sync", "module", "browser", "import", "default"],
+      externalConditions: ["module-sync", "module", "import", "default"],
+    },
+  },
 });

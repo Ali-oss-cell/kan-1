@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+Disallow: /k7n/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /k7n/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /k7n/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /k7n/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /k7n/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /k7n/
+
+Sitemap: https://wearekan.com/sitemap.xml

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { moreSiteLinks } from "@/content/stories";
 import { MaterialIcon } from "./MaterialIcon";
 
 const navLinks = [
@@ -103,6 +104,17 @@ export function Footer() {
             </a>
           </div>
         </div>
+
+        <nav aria-label="More" className="mt-12 border-t-3 border-paper/25 pt-8">
+          <h4 className="label mb-4 text-lavender">On this site</h4>
+          <div className="flex flex-wrap gap-x-6 gap-y-3">
+            {moreSiteLinks.map((link) => (
+              <Link key={link.href} to={link.href} className={linkClass}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
 
         <div className="mt-16 flex flex-col gap-4 border-t-3 border-paper/25 pt-6 md:flex-row md:items-center md:justify-between">
           <p className="label text-paper/60">

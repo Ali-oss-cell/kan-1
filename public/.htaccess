@@ -4,7 +4,13 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  DirectorySlash Off
   RewriteRule ^index\.html$ - [L]
+  # One public URL, without a trailing slash. The prerendered file stays
+  # in the matching folder.
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.+[^/])$ $1/index.html [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
