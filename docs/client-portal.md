@@ -21,6 +21,7 @@ The path only hides the door. Every screen still requires that client’s login.
 | `/k7n/portal/projects` | One project: status, dates, milestones |
 | `/k7n/portal/updates` | Updates Founders has published |
 | `/k7n/portal/payments` | Their invoices: amount, due date, status, how to pay |
+| `/k7n/portal/profile` | Their profile: edit name, billing history |
 
 ## Who it is for
 
@@ -76,6 +77,15 @@ The client sees updates newest first. A founder can hide an update after it is p
 - Date paid
 
 Draft and void invoices stay in Founders. The portal does not charge a card. It shows what was agreed and what is still due.
+
+### Profile
+
+- Name (editable by the client)
+- Email (read-only; it is the login)
+- Company (read-only when set by Founders)
+- Billing history: paid and open invoices, with paid and outstanding totals
+
+A client cannot change their email or portal password from this page. Founders reset access in `/k7n/admin`.
 
 ### Files
 

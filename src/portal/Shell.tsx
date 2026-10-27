@@ -8,6 +8,7 @@ const LINKS = [
   ["/k7n/portal/updates", "Updates"],
   ["/k7n/portal/payments", "Payments"],
   ["/k7n/portal/calendar", "Calendar"],
+  ["/k7n/portal/profile", "Profile"],
 ] as const;
 
 export function PortalShell({ children }: { children: ReactNode }) {
@@ -31,7 +32,9 @@ export function PortalShell({ children }: { children: ReactNode }) {
               <span className="label text-lavender">Portal</span>
             </div>
             <div className="flex flex-wrap items-center gap-x-2 gap-y-4">
-              <span className="label text-paper/80">{portalClient?.name}</span>
+              <NavLink to="/k7n/portal/profile" className="label text-paper/80 underline-offset-4 hover:underline">
+                {portalClient?.name}
+              </NavLink>
               <button type="button" className="btn btn-sm bg-paper text-ink" onClick={portalSignOut}>
                 Sign out
               </button>

@@ -208,9 +208,14 @@ export function ContactPage() {
               </div>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <button type="submit" className="btn btn-periwinkle" disabled={sending || sent}>
-                  {sent ? "Message sent" : "Send message"}
-                  <MaterialIcon name="arrow_outward" aria-hidden />
+                <button
+                  type="submit"
+                  className={`btn ${sent ? "" : "btn-periwinkle"}`}
+                  disabled={sending || sent}
+                  aria-disabled={sending || sent}
+                >
+                  {sending ? "Sending…" : sent ? "Message sent" : "Send message"}
+                  {sent ? null : <MaterialIcon name="arrow_outward" aria-hidden />}
                 </button>
                 <p className="label text-ink/60">
                   {sent

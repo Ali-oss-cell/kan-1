@@ -32,15 +32,20 @@ export function PortalSignIn() {
         <p className="mb-8 text-body text-ink/70">
           Your projects, updates, and invoices. This door is not linked from the public site.
         </p>
-        {usingApi ? null : hasDemoData(db) ? (
-          <p className="mb-8 border-3 border-ink bg-lavender px-4 py-3 text-small">
-            Sample data is in this browser. Email <span className="font-bold">{DEMO_PORTAL_EMAIL}</span>, password{" "}
-            <span className="font-bold">{DEMO_PORTAL_PASSWORD}</span>.
-          </p>
-        ) : (
-          <button type="button" className="btn btn-sm mb-8" onClick={loadSample}>
-            Load sample data
-          </button>
+        {usingApi ? null : (
+          <div className="mb-8 border-3 border-ink bg-lavender px-4 py-3 text-small">
+            {hasDemoData(db) ? (
+              <p>
+                Sample client login: <span className="font-bold">{DEMO_PORTAL_EMAIL}</span> /{" "}
+                <span className="font-bold">{DEMO_PORTAL_PASSWORD}</span>
+              </p>
+            ) : (
+              <p className="mb-3">Load sample data to get a demo client login.</p>
+            )}
+            <button type="button" className="btn btn-sm mt-3" onClick={loadSample}>
+              {hasDemoData(db) ? "Reload sample data" : "Load sample data"}
+            </button>
+          </div>
         )}
         <div className="grid gap-5">
           <Field label="Email">

@@ -70,6 +70,7 @@ type DashboardContextValue = {
   portalClient: Client | null;
   portalSignIn: (email: string, password: string) => Promise<string | null>;
   portalSignOut: () => void;
+  updatePortalProfile: (fields: { name: string }) => Promise<string | null>;
   exportBackup: () => void;
   importBackup: (file: File) => Promise<string | null>;
   loadSample: () => void;
@@ -530,6 +531,17 @@ function LocalDashboard({ children }: { children: ReactNode }) {
     portalSignOut() {
       localStorage.removeItem(PORTAL_KEY);
       setPortalClientId(null);
+    },
+    async updatePortalProfile(fields) {
+      const client = portalClient;
+      if (!client) return "Sign in to edit your profile.";
+      const name = fields.name.trim();
+      if (!name) return "Name is required.";
+      const error = write({
+        ...dbRef.current,
+        clients: upsert(dbRef.current.clients, { ...client, name }),
+      });
+      return error;
     },
     loadSample() {
       write(demoDb());

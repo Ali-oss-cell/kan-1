@@ -104,6 +104,12 @@
     box-shadow: 0 0 0 0 #0f0f0f;
   }
 
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    @apply pointer-events-none cursor-not-allowed bg-ink/15 text-ink/40 shadow-none;
+    transform: none;
+  }
+
   .btn-sm {
     @apply h-12 px-6 shadow-brutal-sm;
   }

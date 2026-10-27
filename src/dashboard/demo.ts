@@ -6,13 +6,13 @@ export const DEMO_PORTAL_CLIENT_ID = "demo-ada";
 
 export const DEMO_FOUNDER_NAME = "K";
 export const DEMO_FOUNDER_PASSWORD = "founders1";
-export const DEMO_PORTAL_EMAIL = "ada@example.com";
-export const DEMO_PORTAL_PASSWORD = "portal-pass";
+export const DEMO_PORTAL_EMAIL = "sudo@kan.local";
+export const DEMO_PORTAL_PASSWORD = "sudo-client";
 
 const FOUNDER_SALT = "demo-founder-salt";
 const FOUNDER_HASH = "1db70cf9df7b3acb7ec0a6339e479396e2888046fb313c5f211325e6b54f487d";
 const PORTAL_SALT = "demo-portal-salt";
-const PORTAL_HASH = "748819ebe310554ad4d9edbefef9a6d746428037be6615b462f33b7c47089ef9";
+const PORTAL_HASH = "d65a65ec8f574f72315b5ebd804d716b749c4cfe2812eac6bf4618dbea92f1b8";
 
 export function hasDemoData(db: DB) {
   return db.founders.some((founder) => founder.id === DEMO_FOUNDER_ID);

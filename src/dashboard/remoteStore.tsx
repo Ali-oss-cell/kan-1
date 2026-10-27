@@ -276,6 +276,17 @@ export function RemoteDashboard({ children }: { children: ReactNode }) {
           setActorId(null);
           setDb(emptyDb());
         },
+        async updatePortalProfile(fields) {
+          const name = fields.name.trim();
+          if (!name) return "Name is required.";
+          return fail(async () => {
+            await apiJson("portal", "/api/portal/profile", {
+              method: "PATCH",
+              body: JSON.stringify({ name }),
+            });
+            await refresh();
+          });
+        },
         loadSample() {},
         nextInvoiceNumber() {
           const max = dbRef.current.invoices.reduce((highest, invoice) => {

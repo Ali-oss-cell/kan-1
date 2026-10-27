@@ -4,6 +4,7 @@ import { DashboardProvider, useDashboard } from "@/dashboard/store";
 import { PortalCalendar } from "@/portal/Calendar";
 import { PortalHome } from "@/portal/Home";
 import { PortalPayments } from "@/portal/Payments";
+import { PortalProfile } from "@/portal/Profile";
 import { PortalProjects } from "@/portal/Projects";
 import { PortalShell } from "@/portal/Shell";
 import { PortalSignIn } from "@/portal/SignIn";
@@ -32,6 +33,7 @@ export function PortalApp() {
           <Route path="/k7n/portal/updates" element={<PortalUpdates />} />
           <Route path="/k7n/portal/payments" element={<PortalPayments />} />
           <Route path="/k7n/portal/calendar" element={<PortalCalendar />} />
+          <Route path="/k7n/portal/profile" element={<PortalProfile />} />
         </Route>
         <Route path="*" element={<Navigate to="/k7n/portal" replace />} />
       </Routes>
