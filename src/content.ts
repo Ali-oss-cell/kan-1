@@ -1,10 +1,8 @@
-export const projectImages = {
-  lumina:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAHiLhao1rJ2pr02YqelF6CvmgI3hdz0qgmtU7UZmlJHRnzQU1Y9zeHki1iPP581Z3l2KZ2RT9sbTSFMrY-V4PqOh4_fzuDptkNuQ0dh8NHzYdNSSjbB0UxsHuJ__pggXyjoc-e8JnxSIRnRsEiENOFpMQHjLbU2hMzmEOxEM6HwIk_WCS2YbfxvycaoRGlKtS9Xjhiw1NANVN5qtWx_L00fKB-nlty0kVfMWkFBOnniRnHVUNBr6DLBBA-BVXbP8PVpdCJWcxklv0g",
-  vertex:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCyVo87-zsFgoyBjTBkkkyuFP-Ii0NI7JUlUwNxByPWs8NHOsyQagZrtSjCxKsWYMm3zScVRRQ7h__5IJwaIyS35eLCZ6oArrU9ZpVyCleqTFwu3PLVQC8t5UtXQY2QHyf4PuwncR8JBSrYXb1OoTdVpqrP8va7OmsfES3mFs6Q0JZRYfLDyzAYVFkKeJL5MtJl1I1SI2SMjvjunQGf8II3Sa_eYzTR_rkDBzTtEZ5JHgJVflIpMLefterICcRWbnVho0SAnbEXolOp",
-  prism:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCWB9jtBqHOwnB_ti59LH2U-r0I6CXsZ2BnsFMr18ANaso0Cmke3TBn8q_XSKpTUUmL5jGghr9npS8SDsNIps-OnfB9oX2CouCE4GA3LCzvlQATRtc9goSdlSRKIvu50orh8j2ywtZ34HMy2JPy04A63l3lEfmmwMrKHymzHYOnAs67N2H80oQ33OTWOvPkbyRvgLqmT4ag8xSvaxdHcPBuQJb1sJz2P-yViR0Ke-nrG_-OWbfmt2qjatOZmg6bkvFIUZy0aWH6puMx",
+/** Local artwork for homepage work + case studies. */
+export const portfolioImages = {
+  lumina: "/work/lumina.jpg",
+  vertex: "/work/vertex.jpg",
+  prism: "/work/prism.jpg",
 } as const;
 
 export const heroContent = {
@@ -81,9 +79,9 @@ export const portfolioProjects = [
     description:
       "A modular identity system built for scale — pearlescent surfaces, crystalline structure, and a visual language that feels inevitable.",
     tags: ["Identity", "Guidelines", "Design system"],
-    image: projectImages.lumina,
+    image: portfolioImages.lumina,
     duo: "duo-purple",
-    alt: "A high-fidelity 3D digital sculpture featuring flowing pearlescent ribbons and intricate crystalline textures.",
+    alt: "A glowing purple planet with orbital rings against a starfield.",
   },
   {
     id: "vertex",
@@ -93,9 +91,9 @@ export const portfolioProjects = [
     description:
       "Interface architecture with precision — dark metal, indigo signal lights, and interaction patterns tuned for clarity under pressure.",
     tags: ["React", "UI engineering", "Dashboards"],
-    image: projectImages.vertex,
+    image: portfolioImages.vertex,
     duo: "duo-periwinkle",
-    alt: "A macro shot of a sleek, dark metallic hardware interface with glowing neon indigo light indicators.",
+    alt: "A neon purple-to-blue signal waveform across a dark starfield.",
   },
   {
     id: "prism",
@@ -105,9 +103,9 @@ export const portfolioProjects = [
     description:
       "Campaign systems that refract attention — glass shards of color, sharp storytelling, and measurable growth across every channel.",
     tags: ["Campaigns", "Analytics", "Creative"],
-    image: projectImages.prism,
+    image: portfolioImages.prism,
     duo: "duo-lavender",
-    alt: "A minimalist abstract render of floating glass shards reflecting a vibrant spectrum of colors.",
+    alt: "Earth from orbit in deep indigo with a violet atmospheric glow.",
   },
 ] as const;
 

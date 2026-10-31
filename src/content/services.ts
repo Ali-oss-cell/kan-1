@@ -1,10 +1,17 @@
-import { projectImages } from "@/content";
-
 export const servicesPageIntro = {
   eyebrow: "Services",
   title: "End-to-end, from code to campaign.",
   subtitle:
     "A structured system of engineering, design and growth capabilities — packaged with fixed scopes so you know the timeline and the price before we start.",
+} as const;
+
+export const serviceImages = {
+  brandSprint: "/services/brand-sprint.jpg",
+  launchSite: "/services/launch-site.jpg",
+  webAppBuild: "/services/web-app-build.jpg",
+  brandLaunchBundle: "/services/brand-launch-bundle.jpg",
+  growthMarketing: "/services/growth-marketing.jpg",
+  aiAutomationPilot: "/services/ai-automation-pilot.jpg",
 } as const;
 
 export const launchServices = [
@@ -28,7 +35,7 @@ export const launchServices = [
       "Guidelines",
       "Positioning",
     ],
-    visual: projectImages.lumina,
+    visual: serviceImages.brandSprint,
     duo: "duo-purple",
     surface: "bg-paper",
   },
@@ -49,7 +56,7 @@ export const launchServices = [
       "Analytics",
       "Lead forms",
     ],
-    visual: projectImages.vertex,
+    visual: serviceImages.launchSite,
     duo: "duo-periwinkle",
     surface: "bg-paper",
   },
@@ -74,7 +81,7 @@ export const launchServices = [
       "Deploy",
       "30-day support",
     ],
-    visual: projectImages.prism,
+    visual: serviceImages.webAppBuild,
     duo: "duo-lavender",
     surface: "bg-paper",
   },
@@ -98,7 +105,7 @@ export const launchServices = [
       "Parallel",
       "Same-day launch",
     ],
-    visual: projectImages.lumina,
+    visual: serviceImages.brandLaunchBundle,
     duo: "duo-periwinkle",
     surface: "bg-paper",
     featured: true,
@@ -123,7 +130,7 @@ export const launchServices = [
       "Content",
       "Reporting",
     ],
-    visual: projectImages.prism,
+    visual: serviceImages.growthMarketing,
     duo: "duo-purple",
     surface: "bg-paper",
   },
@@ -147,7 +154,7 @@ export const launchServices = [
       "Triage",
       "Monitoring",
     ],
-    visual: projectImages.vertex,
+    visual: serviceImages.aiAutomationPilot,
     duo: "duo-lavender",
     surface: "bg-paper",
   },
