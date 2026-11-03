@@ -27,7 +27,7 @@ export const launchServices = [
     investment: "$3,000–$6,000",
     cta: {
       label: "Start Brand Sprint",
-      href: "mailto:hello@kanagency.design?subject=Brand%20Sprint",
+      href: "/contact",
     },
     capabilities: [
       "Logo",
@@ -72,7 +72,7 @@ export const launchServices = [
     investment: "$8,000–$30,000",
     cta: {
       label: "Discuss a Build",
-      href: "mailto:hello@kanagency.design?subject=Web%2FApp%20Build",
+      href: "/contact",
     },
     capabilities: [
       "Frontend",
@@ -97,7 +97,7 @@ export const launchServices = [
     investment: "$6,500–$12,000",
     cta: {
       label: "Get the Bundle",
-      href: "mailto:hello@kanagency.design?subject=Brand%20%2B%20Launch%20Bundle",
+      href: "/contact",
     },
     capabilities: [
       "Brand",
@@ -122,7 +122,7 @@ export const launchServices = [
     investment: "Custom quote",
     cta: {
       label: "Plan Your Growth",
-      href: "mailto:hello@kanagency.design?subject=Growth%20Marketing",
+      href: "/contact",
     },
     capabilities: [
       "SEO",
@@ -146,7 +146,7 @@ export const launchServices = [
     investment: "$2,000–$4,000",
     cta: {
       label: "Pilot Automation",
-      href: "mailto:hello@kanagency.design?subject=AI%20Automation%20Pilot",
+      href: "/contact",
     },
     capabilities: [
       "LLM workflows",

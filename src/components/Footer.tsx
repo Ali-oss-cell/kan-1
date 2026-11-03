@@ -96,12 +96,12 @@ export function Footer() {
 
           <div className="flex flex-col gap-3 lg:col-span-3">
             <h4 className="label mb-2 text-lavender">Contact</h4>
-            <a
-              href="mailto:hello@kanagency.design"
+            <Link
+              to="/contact"
               className="label-lg w-fit text-paper underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-lavender"
             >
-              hello@kanagency.design
-            </a>
+              Send a message
+            </Link>
           </div>
         </div>
 

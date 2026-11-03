@@ -60,12 +60,12 @@ export function Nav() {
       <div className="on-dark border-b-3 border-ink bg-ink text-paper">
         <div className="container-site flex h-10 items-center justify-between gap-4">
           <p className="label">Now booking new projects</p>
-          <a
-            href="mailto:hello@kanagency.design"
+          <Link
+            to="/contact"
             className="label hidden text-paper/70 transition-colors hover:text-lavender sm:inline"
           >
-            hello@kanagency.design
-          </a>
+            Contact us
+          </Link>
         </div>
       </div>
 

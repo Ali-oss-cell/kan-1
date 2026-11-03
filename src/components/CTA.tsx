@@ -44,10 +44,10 @@ export function CTA() {
               Get in touch
               <MaterialIcon name="arrow_outward" aria-hidden />
             </Link>
-            <a href="mailto:hello@kanagency.design" className="btn btn-paper">
+            <Link to="/contact" className="btn btn-paper">
               Email us
               <MaterialIcon name="mail" aria-hidden />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
